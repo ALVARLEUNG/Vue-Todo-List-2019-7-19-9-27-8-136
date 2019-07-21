@@ -11,12 +11,11 @@
       <el-button id="button" @click="addItem" @keyup.enter="addItem">Add</el-button>
     </div>
     <br>
-    <div v-for="(item,index) in itemList">
-      {{index+1}}
-      <el-checkbox :checked="item.status === 'complete'" @change="check(index)"><span v-if="item.status !== 'complete'">{{item.text}}</span>
+    <li v-for="(item,index) in itemList" :key="index">
+      <span>{{index+1}}</span><el-checkbox :value="item.status" @change="check(index)"><span v-if="item.status === ''">{{item.text}}</span>
         <del v-else>{{item.text}}</del>
       </el-checkbox>
-    </div>
+    </li>
     <div>
       <ul id="filters">
         <li>
@@ -43,22 +42,23 @@
         activeItems: [],
         itemList: [],
         inputText: '',
-        status: 'All'
+        status: 'All',
+        checkStatus:false
       };
     },
     methods: {
       addItem() {
         if (this.inputText !== '') {
-          let item = {text: this.inputText, status: 'active'};
+          let item = {text: this.inputText, status: ''};
           this.allItems.push(item);
           this.inputText = '';
           this.showItem(this.status);
         }
       },
       check(index) {
-        this.allItems[index].status === 'active' ?
-          this.allItems[index].status = 'complete' : this.allItems[index].status = 'active';
-        this.itemList = this.allItems;
+        this.itemList[index].status === '' ?
+          this.itemList[index].status = 'complete' : this.itemList[index].status = '';
+        // this.itemList = this.allItems;
       },
       showItem (status) {
         switch (status) {
@@ -68,14 +68,14 @@
             break;
           case 'Active':
             this.status = 'Active';
-            this.itemList = this.allItems.filter(item => item.status === 'active');
+            this.itemList = this.allItems.filter(item => item.status === '');
+            console.log(this.itemList);
             break;
           case 'Complete':
             this.status = 'Complete';
             this.itemList = this.allItems.filter(item => item.status === 'complete');
             break;
         }
-
       }
     }
   }
