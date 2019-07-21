@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div>
       <h2>Jquery To Do List</h2>
       <p>
@@ -7,11 +7,13 @@
       </p>
     </div>
     <div>
-      <input class="input-text" type="text" name="ListItem"/>
-      <div id="button">Add</div>
+      <el-input v-model="inputText" class="input-text" placeholder="请输入内容" ></el-input>
+      <el-button id="button" @click="addItem">Add</el-button>
     </div>
-    <br/>
-    <ol></ol>
+    <br>
+    <ol>
+      <li v-for="item in itemList"><input type="checkbox" :checked="item.status === 'complete'">{{item.text}}</li>
+    </ol>
     <div>
       <ul id="filters">
         <li>
@@ -30,10 +32,22 @@
 
 <script>
   export default {
-    name: "TodoList"
+    name: "TodoList",
+    data() {
+    return {
+      itemList: [],
+      inputText: '',
+    };
+  },
+    methods: {
+      addItem () {
+        let item ={text:this.inputText, status: 'active'};
+        this.itemList.push(item);
+      }
+    }
   }
 </script>
 
-<style scoped>
+<style src="../css/todoListStyle.css">
 
 </style>
