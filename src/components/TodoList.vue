@@ -8,12 +8,12 @@
     </div>
     <div>
       <el-input v-model="inputText" class="input-text" placeholder="请输入内容" ></el-input>
-      <el-button id="button" @click="addItem">Add</el-button>
+      <el-button id="button" @click="addItem" @keyup.enter="addItem">Add</el-button>
     </div>
     <br>
-    <ol>
-      <li v-for="item in itemList"><input type="checkbox" :checked="item.status === 'complete'">{{item.text}}</li>
-    </ol>
+    <div  v-for="(item,index) in itemList">
+      {{index+1}}<el-checkbox :checked="item.status === 'complete'" @change="check(index)"><span v-if="item.status !== 'complete'">{{item.text}}</span><del v-else>{{item.text}}</del></el-checkbox>
+    </div>
     <div>
       <ul id="filters">
         <li>
@@ -41,8 +41,17 @@
   },
     methods: {
       addItem () {
-        let item ={text:this.inputText, status: 'active'};
-        this.itemList.push(item);
+        if (this.inputText !== '') {
+          let item ={text:this.inputText, status: 'active'};
+          this.itemList.push(item);
+          this.inputText = '';
+        }
+      },
+      check (index) {
+        this.itemList[index].status === 'active'?
+          this.itemList[index].status = 'complete':  this.itemList[index].status = 'active'
+
+
       }
     }
   }
