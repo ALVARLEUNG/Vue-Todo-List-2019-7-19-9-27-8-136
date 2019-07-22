@@ -6,7 +6,7 @@
         <div ref="content" v-if="!item.status" :contenteditable="isContenteditable" @dblclick="changeStatus"
              @keydown.enter.prevent="handleChange($event,index)">{{item.text}}
         </div>
-        <div  v-else contenteditable="isContenteditable" style="color: #999999" @dblclick="changeStatus" @keydown.enter.prevent="handleChange($event,index)">
+        <div v-else contenteditable="isContenteditable" style="color: #999999" @dblclick="changeStatus" @keydown.enter.prevent="handleChange($event,index)">
           <del>{{item.text}}</del>
         </div>
       </li>
@@ -46,7 +46,8 @@
       },
       handleChange(event, index) {
         this.isContenteditable = false;
-        this.$emit('updateText', index, event.target.innerText);
+        this.itemList[index].text = event.target.innerText;
+        // this.$emit('updateText', index, event.target.innerText);
       },
       changeStatus() {
         this.isContenteditable = true;
