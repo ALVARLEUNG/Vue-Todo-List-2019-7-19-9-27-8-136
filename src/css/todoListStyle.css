@@ -1,4 +1,4 @@
->>>body {
+body {
   font: normal normal 13px/16px "Open Sans", sans-serif;
   background: #ccc;
 }
@@ -12,11 +12,11 @@
   border-radius: 5px;
 }
 
->>>.input-text{
+.input-text{
   width: 70%;
 }
 
->>>input{
+input{
   padding: 4px 15px 4px 0;
 
 }
@@ -35,24 +35,24 @@
   opacity: .8;
 }
 
->>>ol {
+>>> ol {
   padding-left: 20px;
 }
 
->>>ol li {
+>>> ol li {
   padding: 5px;color:#000;
 }
 
->>>ol li span{
+ol li span{
   word-break:break-all;
   width: 70%;
 }
 
->>>ol li:nth-child(even){
+ol li:nth-child(even){
   background: #f4ecec;
 }
 
->>>li:hover{
+li:hover{
   cursor: pointer;
 }
 
@@ -87,7 +87,7 @@
   outline: none;
 }
 
->>>.checked {
+.checked {
   color: #999;
   text-decoration: line-through;
 }
