@@ -16,7 +16,8 @@
     name: "Body",
     data() {
       return {
-        allItems: []
+        allItems: [],
+        status: 'All'
       };
     },
     components: {
@@ -30,7 +31,13 @@
         this.allItems.push(item);
       },
       filterByStatus (status) {
+        this.status = status;
         this.$refs.checkBox.initItemList(status);
+      }
+    },
+    watch: {
+      allItems: function () {
+        this.$refs.checkBox.initItemList(this.status);
       }
     }
   }

@@ -2,9 +2,9 @@
   <div>
     <ol>
       <li v-for="(item, index) in itemList" :key="index">
-        <el-checkbox v-model="item.status"></el-checkbox>
-        <span v-if="!item.status" contenteditable="true" @keydown.enter="handleChange">{{item.text}}</span>
-        <span v-else contenteditable="true"><del>{{item.text}}</del></span>
+        <el-checkbox v-model="item.status" style="float:left"></el-checkbox>
+        <div v-if="!item.status" contenteditable="true" @keydown.enter="handleChange">{{item.text}}</div>
+        <div v-else contenteditable="true" style="color: #999999"><del>{{item.text}}</del></div>
       </li>
     </ol>
   </div>
@@ -28,7 +28,6 @@
       initItemList(status) {
         switch (status) {
           case 'All' :
-            // this.status = 'All';
             this.itemList = this.allItems;
             break;
           case 'Active':
