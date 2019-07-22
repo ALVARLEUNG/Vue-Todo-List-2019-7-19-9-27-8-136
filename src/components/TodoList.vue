@@ -2,7 +2,7 @@
   <div class="container">
     <Header></Header>
     <Body></Body>
-    <Footer v-on:generatedItemList="generatedItemList" v-bind:allItems="allItems" ref="footer"></Footer>
+    <Footer v-on:showItemList="showItemList"></Footer>
   </div>
 </template>
 
@@ -32,26 +32,27 @@
       };
     },
     methods: {
-      addItem() {
-        if (this.inputText !== '') {
-          let item = {text: this.inputText, status: ''};
-          this.allItems.push(item);
-          this.inputText = '';
-          this.$refs.footer.showItem(this.status);
-        }
-      },
+      // addItem() {
+      //   if (this.inputText !== '') {
+      //     let item = {text: this.inputText, status: ''};
+      //     this.allItems.push(item);
+      //     this.inputText = '';
+      //     this.$refs.footer.showItem(this.status);
+      //   }
+      // },
       check(index) {
         this.itemList[index].status === '' ?
           this.itemList[index].status = 'complete' : this.itemList[index].status = '';
         // this.itemList = this.allItems;
       }
     },
-    generatedItemList(itemList) {
+    showItemList(status, itemList) {
+      this.status = status;
       this.itemList = itemList;
     }
   }
 </script>
 
-<style src="../css/todoListStyle.css" scoped>
+<style scoped>
 
 </style>

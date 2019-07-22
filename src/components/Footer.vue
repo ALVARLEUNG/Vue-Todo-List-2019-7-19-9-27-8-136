@@ -29,7 +29,7 @@
           case 'All' :
             // this.status = 'All';
             this.itemList = this.allItems;
-            this.$emit('generatedItemList', status, this.itemList);
+            this.$emit('showItemList', status, this.itemList);
             break;
           case 'Active':
             this.status = 'Active';
