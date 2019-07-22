@@ -17,40 +17,26 @@
 <script>
   export default {
     name: "Footer",
-    props:['allItems'],
+    props: ['allItems'],
     data() {
-      return{
-        itemList:[]
+      return {
+        itemList: []
       };
     },
     methods: {
       showItem(status) {
-        switch (status) {
-          case 'All' :
-            // this.status = 'All';
-            this.itemList = this.allItems;
-            this.$emit('generateItemList', status, this.itemList);
-            break;
-          case 'Active':
-            this.status = 'Active';
-            this.itemList = this.allItems.filter(item => item.status === '');
-            break;
-          case 'Complete':
-            this.status = 'Complete';
-            this.itemList = this.allItems.filter(item => item.status === 'complete');
-            break;
-        }
+        this.$emit('filterItems', status);
       }
     }
   }
 </script>
 
 <style scoped>
-  li:hover{
+  li:hover {
     cursor: pointer;
   }
 
-  #filters{
+  #filters {
     text-align: center;
     margin-bottom: -10px;
     margin-top: 40px;
@@ -69,6 +55,7 @@
   #filters li a.selected {
     border-color: rgba(175, 47, 47, 0.2);
   }
+
   #filters li a.selected, #filters li a:hover {
     border-color: rgba(175, 47, 47, 0.1);
   }

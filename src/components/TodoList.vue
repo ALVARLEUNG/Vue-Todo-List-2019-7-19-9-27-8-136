@@ -2,8 +2,8 @@
   <div id="app">
     <div class="container">
       <Header></Header>
-      <Body></Body>
-      <Footer></Footer>
+      <Body ref="filterByStatus"></Body>
+      <Footer @filterItems="filterItems"></Footer>
     </div>
   </div>
 </template>
@@ -24,14 +24,13 @@
     },
     data() {
       return {
-        allItems: [],
-        completeItems: [],
-        activeItems: [],
-        itemList: [],
-        // inputText: '',
-        status: 'All',
-        checkStatus: false
+
       };
+    },
+    methods: {
+      filterItems (status) {
+        this.$refs.filterByStatus.filterByStatus(status);
+      }
     }
   }
 </script>
