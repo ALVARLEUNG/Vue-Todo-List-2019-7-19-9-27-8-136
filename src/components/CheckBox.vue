@@ -1,20 +1,23 @@
 <template>
   <div>
     <ol>
-      <li v-for="(item, index) in allItems" :key="index">{{item.text}}</li>
+      <li v-for="(item, index) in allItems" :key="index">
+        <el-checkbox v-model="item.status"></el-checkbox>
+        <span v-if="!item.status">{{item.text}}</span>
+              <del v-else>{{item.text}}</del>
+      </li>
     </ol>
-    <!--  <li v-for="(item,index) in itemList" :key="index">-->
-    <!--    <span>{{index+1}}</span>-->
-    <!--    <el-checkbox :value="item.status" @change="check(index)"><span v-if="item.status === ''">{{item.text}}</span>-->
-    <!--      <del v-else>{{item.text}}</del>-->
-    <!--    </el-checkbox>-->
-    <!--  </li>-->
   </div>
 </template>
 
 <script>
   export default {
     name: "CheckBox",
+    data() {
+      return {
+        isCheck: false
+      };
+    },
     props: {
       allItems: {
         type: Array,

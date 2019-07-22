@@ -24,7 +24,7 @@
     },
     methods: {
       addItem(inputText) {
-        let item = {text: inputText, status: ''};
+        let item = {text: inputText, status: false};
         this.allItems.push(item);
       }
     }
