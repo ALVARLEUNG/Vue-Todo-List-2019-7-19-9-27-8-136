@@ -3,12 +3,12 @@
     <ol>
       <li v-for="(item, index) in itemList" :key="index">
         <el-checkbox v-model="item.status" style="float:left"></el-checkbox>
-        <div ref="content" v-if="!item.status" :contenteditable="isContenteditable" @dblclick="changeStatus"
+        <span ref="content" v-if="!item.status" :contenteditable="isContenteditable" @dblclick="changeStatus"
              @keydown.enter.prevent="handleChange($event,index)">{{item.text}}
-        </div>
-        <div v-else contenteditable="isContenteditable" style="color: #999999" @dblclick="changeStatus" @keydown.enter.prevent="handleChange($event,index)">
+        </span>
+        <span v-else contenteditable="isContenteditable" style="color: #999999" @dblclick="changeStatus" @keydown.enter.prevent="handleChange($event,index)">
           <del>{{item.text}}</del>
-        </div>
+        </span>
       </li>
     </ol>
   </div>
