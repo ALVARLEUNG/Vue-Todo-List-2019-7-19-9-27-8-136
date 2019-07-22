@@ -8,7 +8,7 @@
     </div>
     <div>
       <el-input v-model="inputText" class="input-text" placeholder="请输入内容"></el-input>
-      <el-button id="button" @click="addItem" @keyup.enter="addItem">Add</el-button>
+      <el-button id="button" @click="addItem" @keyup.down.enter="addItem">Add</el-button>
     </div>
     <br>
     <li v-for="(item,index) in itemList" :key="index">
@@ -69,7 +69,6 @@
           case 'Active':
             this.status = 'Active';
             this.itemList = this.allItems.filter(item => item.status === '');
-            console.log(this.itemList);
             break;
           case 'Complete':
             this.status = 'Complete';
