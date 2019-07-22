@@ -3,8 +3,12 @@
     <ol>
       <li v-for="(item, index) in itemList" :key="index">
         <el-checkbox v-model="item.status" style="float:left"></el-checkbox>
-        <div v-if="!item.status" contenteditable="true" @keydown.enter="handleChange">{{item.text}}</div>
-        <div v-else contenteditable="true" style="color: #999999"><del>{{item.text}}</del></div>
+        <div ref="content" v-if="!item.status" :contenteditable="isContenteditable" @dblclick="changeStatus"
+             @keydown.enter.prevent="handleChange($event,index)">{{item.text}}
+        </div>
+        <div  v-else contenteditable="isContenteditable" style="color: #999999" @dblclick="changeStatus" @keydown.enter.prevent="handleChange($event,index)">
+          <del>{{item.text}}</del>
+        </div>
       </li>
     </ol>
   </div>
@@ -14,7 +18,9 @@
     name: "CheckBox",
     data() {
       return {
-        itemList: []
+        itemList: [],
+        isContenteditable: false,
+        text: ''
       };
     },
     props: {
@@ -38,8 +44,12 @@
             break;
         }
       },
-      handleChange() {
-        console.log(1111);
+      handleChange(event, index) {
+        this.isContenteditable = false;
+        this.$emit('updateText', index, event.target.innerText);
+      },
+      changeStatus() {
+        this.isContenteditable = true;
       }
     },
     mounted() {

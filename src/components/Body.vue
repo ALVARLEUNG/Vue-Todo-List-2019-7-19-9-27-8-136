@@ -2,7 +2,7 @@
   <div>
     <div>
       <InputBar @addItem="addItem"></InputBar>
-      <Check-box :allItems="allItems" ref="checkBox"></Check-box>
+      <Check-box :allItems="allItems" ref="checkBox" @updateText = "updateText"></Check-box>
     </div>
   </div>
 </template>
@@ -33,6 +33,9 @@
       filterByStatus (status) {
         this.status = status;
         this.$refs.checkBox.initItemList(status);
+      },
+      updateText(index, text){
+        this.allItems[index].text = text;
       }
     },
     watch: {
