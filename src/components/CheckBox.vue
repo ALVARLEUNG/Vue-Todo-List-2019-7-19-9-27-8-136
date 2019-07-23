@@ -1,7 +1,7 @@
 <template>
   <div>
     <ol>
-      <li v-for="(item, index) in itemList" :key="index">
+      <li v-for="(item, index) in getItemsList" :key="index">
         <el-checkbox v-model="item.status" style="float:left"></el-checkbox>
         <span ref="content" v-if="!item.status" :contenteditable="isContenteditable" @dblclick="changeStatus"
              @keydown.enter.prevent="handleChange($event,index)">{{item.text}}
@@ -55,6 +55,12 @@
     },
     mounted() {
       this.itemList = this.allItems;
+    },
+    computed: {
+      getItemsList(){
+        return this.$store.state.allItems;
+
+      }
     }
   }
 </script>

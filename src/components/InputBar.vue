@@ -15,15 +15,9 @@
     },
     methods: {
       handleClickAdd () {
-        this.$emit("addItem", this.inputText);
+        this.$store.commit('addListItem', this.inputText);
         this.inputText = '';
       }
-      // addItem() {
-      //   if (this.inputText !== '') {
-      //     let item = {text: this.inputText, status: ''};
-      //     this.allItems.push(item);
-      //   }
-      // }
     }
   }
 </script>
