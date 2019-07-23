@@ -2,13 +2,13 @@
   <div>
     <ul id="filters">
       <li>
-        <a href="#" @click="showItem('All')" data-filter="all">ALL</a>
+        <a href="#" @click="selectAllItem">ALL</a>
       </li>
       <li>
-        <a href="#" @click="showItem('Active')" data-filter="active">Active</a>
+        <a href="#" @click="selectActiveItem">Active</a>
       </li>
       <li>
-        <a href="#" @click="showItem('Complete')" data-filter="complete">Complete</a>
+        <a href="#" @click="selectCompleteItem">Complete</a>
       </li>
     </ul>
   </div>
@@ -17,15 +17,24 @@
 <script>
   export default {
     name: "Footer",
-    props: ['allItems'],
-    data() {
-      return {
-        itemList: []
-      };
-    },
     methods: {
-      showItem(status) {
-        this.$emit('filterItems', status);
+      selectAllItem() {
+        const filterAll = (itemList) => {
+          return itemList;
+        }
+        this.$emit('filterItems', filterAll);
+      },
+      selectActiveItem() {
+        const filterActive = (itemList) => {
+          return itemList.filter(item => item.status === false);
+        }
+        this.$emit('filterItems', filterActive);
+      },
+      selectCompleteItem() {
+        const filterComplete = (itemList) => {
+          return itemList.filter(item => item.status === true);
+        }
+        this.$emit('filterItems', filterComplete);
       }
     }
   }

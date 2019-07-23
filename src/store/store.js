@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    allItems:[]
+    allItems:[],
+    id: 0
   },
   getters: {
     getAllItems: allItems =>{
@@ -14,7 +15,12 @@ const store = new Vuex.Store({
   },
   mutations: {
     addListItem(state, text){
-      state.allItems.push({text: text, status: false});
+      state.id++
+      state.allItems.push({id:state.id, text: text, status: false});
+    },
+    updateItem(state, item){
+      state.allItems.filter(i => i.id === item.id)[0].text = item.text;
+      console.log( state.allItems)
     }
   }
 })

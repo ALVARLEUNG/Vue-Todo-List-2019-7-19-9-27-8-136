@@ -2,7 +2,7 @@
   <div id="app">
     <div class="container">
       <Header></Header>
-      <Body ref="filterByStatus"></Body>
+      <Body :filterItemsByStatus="filterItemsByStatus"></Body>
       <Footer @filterItems="filterItems"></Footer>
     </div>
   </div>
@@ -24,11 +24,12 @@
     },
     data() {
       return {
+        filterItemsByStatus: Function
       };
     },
     methods: {
-      filterItems (status) {
-        this.$refs.filterByStatus.filterByStatus(status);
+      filterItems (filterFunction) {
+        this.filterItemsByStatus = filterFunction;
       }
     }
   }

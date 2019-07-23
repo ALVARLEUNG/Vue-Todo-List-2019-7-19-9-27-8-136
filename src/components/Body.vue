@@ -1,8 +1,8 @@
 <template>
   <div>
     <div>
-      <InputBar @addItem="addItem"></InputBar>
-      <Check-box :allItems="allItems" ref="checkBox" @updateText = "updateText"></Check-box>
+      <InputBar></InputBar>
+      <Check-box :filterItemsByStatus="filterItemsByStatus"></Check-box>
     </div>
   </div>
 </template>
@@ -14,35 +14,19 @@
 
   export default {
     name: "Body",
-    data() {
-      return {
-        allItems: [],
-        status: 'All'
-      };
+    props: {
+      filterItemsByStatus: Function
     },
     components: {
       Footer,
       CheckBox,
       InputBar
-    },
-    methods: {
-      addItem(inputText) {
-        let item = {text: inputText, status: false};
-        this.allItems.push(item);
-      },
-      filterByStatus (status) {
-        this.status = status;
-        this.$refs.checkBox.initItemList(status);
-      },
-      updateText(index, text){
-        this.allItems[index].text = text;
-      }
-    },
-    watch: {
-      allItems: function () {
-        this.$refs.checkBox.initItemList(this.status);
-      }
     }
+    // methods: {
+    //   filterItems () {
+    //     this.filterItems= this.filterItemsByStatus;
+    //   }
+    // }
   }
 </script>
 

@@ -1,12 +1,13 @@
 <template>
   <div>
     <ol>
-      <li v-for="(item, index) in getItemsList" :key="index">
+      <li v-for="item in itemList" :key="item.id">
         <el-checkbox v-model="item.status" style="float:left"></el-checkbox>
-        <span ref="content" v-if="!item.status" :contenteditable="isContenteditable" @dblclick="changeStatus"
-             @keydown.enter.prevent="handleChange($event,index)">{{item.text}}
+        <span v-if="!item.status" :contenteditable="isContenteditable" @dblclick="changeStatus"
+              @keydown.enter.prevent="handleChange($event,item)">{{item.text}}
         </span>
-        <span v-else contenteditable="isContenteditable" style="color: #999999" @dblclick="changeStatus" @keydown.enter.prevent="handleChange($event,index)">
+        <span v-else contenteditable="isContenteditable" style="color: #999999" @dblclick="changeStatus"
+              @keydown.enter.prevent="handleChange($event,item)">
           <del>{{item.text}}</del>
         </span>
       </li>
@@ -24,42 +25,34 @@
       };
     },
     props: {
-      allItems: {
-        type: Array,
-        default: () => {
-        }
-      }
+      filterItemsByStatus: Function
     },
     methods: {
-      initItemList(status) {
-        switch (status) {
-          case 'All' :
-            this.itemList = this.allItems;
-            break;
-          case 'Active':
-            this.itemList = this.allItems.filter(item => item.status === false);
-            break;
-          case 'Complete':
-            this.itemList = this.allItems.filter(item => item.status === true);
-            break;
-        }
-      },
-      handleChange(event, index) {
+      handleChange(event, item) {
         this.isContenteditable = false;
-        this.itemList[index].text = event.target.innerText;
-        // this.$emit('updateText', index, event.target.innerText);
+        item.text = event.target.innerText;
+        this.$store.commit('updateItem', item)
       },
       changeStatus() {
         this.isContenteditable = true;
       }
     },
     mounted() {
-      this.itemList = this.allItems;
+      this.itemList = JSON.parse(JSON.stringify(this.$store.state.allItems));
     },
     computed: {
-      getItemsList(){
+      getItemList() {
         return this.$store.state.allItems;
-
+      }
+    },
+    watch: {
+      filterItemsByStatus(newVal) {
+        this.itemList = newVal(this.$store.state.allItems);
+        console.log(this.itemList)
+      },
+      '$store.state.allItems'(newVal) {
+        this.itemList = newVal;
+        console.log(newVal)
       }
     }
   }
