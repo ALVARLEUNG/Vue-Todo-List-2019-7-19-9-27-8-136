@@ -2,7 +2,7 @@
   <div>
     <ol>
       <li v-for="item in itemList" :key="item.id">
-        <el-checkbox v-model="item.status" style="float:left"></el-checkbox>
+        <a-checkbox v-model="item.status" style="float:left"></a-checkbox>
         <span :id="item.id" v-if="!item.status" :contenteditable="isContenteditable" @dblclick="changeStatus"
               @keydown.enter.prevent="handleChange($event,item)">{{item.text}}
         </span>

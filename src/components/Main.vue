@@ -17,9 +17,9 @@
     },
     methods: {
       gotoTodoList() {
-        if (this.name !== '' ) {
-          this.$store.commit('setName', this.name)
-          this.$router.push({ path: 'todoList'});
+        let realName = this.$store.state.person.name;
+        if (this.name !== ''&& realName===this.name) {
+          this.$router.push({path: 'home'});
         }
       }
     }

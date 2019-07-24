@@ -7,7 +7,7 @@ const store = new Vuex.Store({
   state: {
     allItems: [],
     id: 0,
-    name: ''
+    person:{name: 'alvar', phone:'666-666-666'},
   },
   getters: {
     getAllItems: allItems => {
@@ -28,8 +28,8 @@ const store = new Vuex.Store({
       state.allItems.filter(i => i.id === item.id)[0].text = item.text;
       console.log(state.allItems)
     },
-    setName(state, name) {
-      state.name = name;
+    isExist(state, name) {
+      return state.person.name === name;
     }
   }
 })
