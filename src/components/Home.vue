@@ -16,14 +16,16 @@
             <span>Personal information</span>
           </a-menu-item>
         </a-menu>
-        <div><a-modal
-          title="Back"
-          :visible="visible"
-          @ok="handleOk",
-          @cancel="visible=false"
-        >
-          <span>Are you sure you want to return?</span>
-        </a-modal></div>
+        <div>
+          <a-modal
+            title="Back"
+            :visible="visible"
+            @ok="handleOk" ,
+            @cancel="visible=false"
+          >
+            <span>Are you sure you want to return?</span>
+          </a-modal>
+        </div>
       </a-layout-sider>
       <router-view style="margin-left: 500px"></router-view>
     </a-layout>
@@ -40,16 +42,17 @@
       };
     },
     methods: {
-      handleOk () {
-        this.$router.go(-1)
+      handleOk() {
+        this.$router.go(-1);
+        this.visible = false;
       },
       showModal() {
         this.visible = true;
       },
-      enterTodoList(){
+      enterTodoList() {
         this.$router.push(`/home`);
       },
-      enterInformation(){
+      enterInformation() {
         this.$router.push(`/home/information`);
       },
 
@@ -67,12 +70,15 @@
     height: 64px;
     line-height: 64px;
   }
+
   >>> .ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
     background-color: #fc999b;
   }
+
   >>> .ant-layout {
     background-color: #999999;
   }
+
   >>> .ant-btn-primary {
     color: #fff;
     background-color: #fc999b;
@@ -81,8 +87,9 @@
     -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
     box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
   }
+
   routerStyle {
-  margin-left: 200px;
+    margin-left: 200px;
     margin-top: 30px;
   }
 </style>
