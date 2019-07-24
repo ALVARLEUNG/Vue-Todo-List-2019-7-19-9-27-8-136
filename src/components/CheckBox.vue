@@ -3,13 +3,14 @@
     <ol>
       <li v-for="item in itemList" :key="item.id">
         <el-checkbox v-model="item.status" style="float:left"></el-checkbox>
-        <span v-if="!item.status" :contenteditable="isContenteditable" @dblclick="changeStatus"
+        <span :id="item.id" v-if="!item.status" :contenteditable="isContenteditable" @dblclick="changeStatus"
               @keydown.enter.prevent="handleChange($event,item)">{{item.text}}
         </span>
         <span v-else contenteditable="isContenteditable" style="color: #999999" @dblclick="changeStatus"
               @keydown.enter.prevent="handleChange($event,item)">
           <del>{{item.text}}</del>
         </span>
+        {{item.time}}
       </li>
     </ol>
   </div>
@@ -76,4 +77,6 @@
   ol li:nth-child(even) {
     background: #f4ecec;
   }
+
+
 </style>

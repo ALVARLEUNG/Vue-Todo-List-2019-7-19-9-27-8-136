@@ -3,11 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import ElementUI from 'element-ui'
+import Antd from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
+
 import store from './store/store'
 
 Vue.config.productionTip = false
-Vue.use(ElementUI)
+Vue.use(Antd)
 
 /* eslint-disable no-new */
 new Vue({
