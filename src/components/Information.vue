@@ -1,5 +1,6 @@
 <template>
   <div class="information">
+    <a-avatar :size="64" icon="user" /><br/>
     <p><span>name:</span>{{person.name}}</p>
     <p><span>phone:</span>{{person.phone}}</p>
   </div>
