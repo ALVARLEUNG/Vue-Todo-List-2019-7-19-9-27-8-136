@@ -1,6 +1,6 @@
 <template>
-  <div style="text-align: center">
-    <h1 style="color: white">Welcome</h1>
+  <div class="main">
+    <h1>Welcome</h1>
     <a-input v-model="name" placeholder="please sign you name"></a-input>
     <br/>
     <a-button @click="gotoTodoList">Begin to use</a-button>
@@ -27,6 +27,10 @@
 </script>
 
 <style scoped>
+  .main{
+    text-align: center;
+    margin-top: 30px;
+  }
   >>> .ant-input {
     width: 300px;
   }

@@ -43,7 +43,7 @@
     },
     methods: {
       handleOk() {
-        this.$router.go(-1);
+        this.$router.push('/');
         this.visible = false;
       },
       showModal() {
@@ -54,42 +54,44 @@
       },
       enterInformation() {
         this.$router.push(`/home/information`);
-      },
-
+      }
     },
     mounted() {
-      this.name = this.$store.state.name
+      this.name = this.$store.state.person.name
     }
   }
 </script>
 
 <style scoped>
-  >>> .ant-layout-header {
-    background-color: #999999;
-    padding: 0 50px;
-    height: 64px;
-    line-height: 64px;
+  >>> .ant-layout.ant-layout-has-sider {
+    height: 500px;
   }
+  /*>>> .ant-layout-header {*/
+  /*  background-color: #999999;*/
+  /*  padding: 0 50px;*/
+  /*  height: 64px;*/
+  /*  line-height: 64px;*/
+  /*}*/
 
-  >>> .ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
-    background-color: #fc999b;
-  }
+  /*>>> .ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {*/
+  /*  background-color: #fc999b;*/
+  /*}*/
 
-  >>> .ant-layout {
-    background-color: #999999;
-  }
+  /*>>> .ant-layout {*/
+  /*  background-color: #999999;*/
+  /*}*/
 
-  >>> .ant-btn-primary {
-    color: #fff;
-    background-color: #fc999b;
-    background-color: #fc999b;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
-    -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
-    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
-  }
+  /*>>> .ant-btn-primary {*/
+  /*  color: #fff;*/
+  /*  background-color: #fc999b;*/
+  /*  background-color: #fc999b;*/
+  /*  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);*/
+  /*  -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);*/
+  /*  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);*/
+  /*}*/
 
-  routerStyle {
-    margin-left: 200px;
-    margin-top: 30px;
-  }
+  /*routerStyle {*/
+  /*  margin-left: 200px;*/
+  /*  margin-top: 30px;*/
+  /*}*/
 </style>

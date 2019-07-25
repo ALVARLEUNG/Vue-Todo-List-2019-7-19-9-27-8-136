@@ -23,6 +23,6 @@
 
 <style scoped>
  .information {
-  color: white;
+ margin-top: 30px;
 }
 </style>
